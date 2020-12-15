@@ -5,19 +5,19 @@ using UnityEngine;
 public class PlaneMovements : MonoBehaviour {
 
     // Rotation
-    public float m_rotationAccelerationLR = 1.5f; // Accélération pour atteindre la vitesse de roulis de "croisière"
-    public float m_rotationAccelerationUD = 1.0f; // Accélération pour atteindre la vitesse de tangage de "croisière"
+    public float m_rotationAccelerationLR = 1.5f; // Accï¿½lï¿½ration pour atteindre la vitesse de roulis de "croisiï¿½re"
+    public float m_rotationAccelerationUD = 1.0f; // Accï¿½lï¿½ration pour atteindre la vitesse de tangage de "croisiï¿½re"
     private float m_actualRotation_LR = 0.0f; // Left/Right
     private float m_actualRotation_UD = 0.0f; // Up/Down
-    public float m_rotationSpeedLR = 5.0f; // Vitesse de roulis de "croisière"
-    public float m_rotationSpeedUD = 5.0f; // Vitesse de tangage de "croisière"
+    public float m_rotationSpeedLR = 5.0f; // Vitesse de roulis de "croisiï¿½re"
+    public float m_rotationSpeedUD = 5.0f; // Vitesse de tangage de "croisiï¿½re"
 
     private float m_angleLR = 0.0f; // Angle actuel Gauche/Droite
     private float m_angleUD = 0.0f; // Angle actuel Haut/Bas
     // Speed
-    public float m_accelerationSpeed = 0.3f; // Accélération pour atteindre la vitesse de "croisière"
+    public float m_accelerationSpeed = 0.3f; // Accï¿½lï¿½ration pour atteindre la vitesse de "croisiï¿½re"
     private float m_actualSpeed = 0.0f;
-    public float m_speedMax = 1.0f; // Vitesse de "croisière"
+    public float m_speedMax = 1.0f; // Vitesse de "croisiï¿½re"
 
     private Vector3 m_vector3;
 
