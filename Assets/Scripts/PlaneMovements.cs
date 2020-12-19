@@ -21,6 +21,8 @@ public class PlaneMovements : MonoBehaviour {
 
     private Vector3 m_vector3;
     private Joystick m_joystick = null;
+    private FixedJoystick m_speedJoystick = null;
+    private FixedJoystick[] fixedJoysticks = null;
 
     //Commands
     public float m_up_down = 0.0f; // Gradient Haut/bas
@@ -34,14 +36,24 @@ public class PlaneMovements : MonoBehaviour {
         m_angleLR = this.transform.localRotation.y;
         m_angleUD = this.transform.localRotation.z;
         m_joystick = FindObjectOfType<Joystick>();
+        fixedJoysticks = FindObjectsOfType<FixedJoystick>();
+        //m_speedJoystick = GameObject.Find("SpeedJoystick");
     }
 
     // Update is called once per frame
     void Update() {
-        if (m_joystick != null)
+        /*if (m_joystick != null)
         {
             m_up_down = m_joystick.Vertical;
             m_left_right = m_joystick.Horizontal;
+        }*/
+        if (fixedJoysticks != null)
+        {
+            m_up_down = fixedJoysticks[1].Vertical;
+            m_left_right = fixedJoysticks[1].Horizontal;
+            m_speed = fixedJoysticks[0].Vertical;
+            Debug.Log("the first element of the joystick array is: " + fixedJoysticks[0].name);
+            Debug.Log("the second element of the joystick array is: " + fixedJoysticks[1].name);
         }
 
         // Rotation
