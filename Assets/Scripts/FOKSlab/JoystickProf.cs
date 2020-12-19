@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Joystick : MonoBehaviour
+public class JoystickProf : MonoBehaviour
 {
 
     public float _horizontal = 0.0f;

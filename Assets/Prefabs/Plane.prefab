@@ -201,7 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5967391654022237633}
   - component: {fileID: 5967391654022237638}
-  m_Layer: 0
+  - component: {fileID: -1464468810838091560}
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,5 +239,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rotationAcceleration: 5
   m_rotationSpeed: 20
+  m_up_down: 0
+  m_left_right: 0
   m_accelerationSpeed: 0.3
+  m_speedMax: 1
   m_speed: 0.2
+--- !u!54 &-1464468810838091560
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5967391654022237639}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
