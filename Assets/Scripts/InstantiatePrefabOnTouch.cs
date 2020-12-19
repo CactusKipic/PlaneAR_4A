@@ -40,7 +40,7 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
         if(Physics.Raycast(ray, out raycastHit, 100.0f, m_layerMask))
         {
             GameObject prefabInstantiated = Instantiate(m_prefabToInstantiate);
-            if (prefabInstantiated)
+            if (prefabInstantiated && instantiate)
             {
                 prefabInstantiated.transform.position = raycastHit.point;
                 prefabInstantiated.transform.parent = raycastHit.collider.transform;
@@ -49,7 +49,14 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
         }
         else
         {
-            Debug.LogError("The prefab cannot be instantiated, no plane is detected.");
+            GameObject prefabInstantiated = Instantiate(m_prefabToInstantiate);
+            if (prefabInstantiated && instantiate)
+            {
+                prefabInstantiated.transform.position = this.transform.position + this.transform.forward;
+                prefabInstantiated.transform.parent = this.transform;
+                Debug.Log("The prefab is instantiated on the plane.");
+            }
+            //Debug.LogError("The prefab cannot be instantiated, no plane is detected.");
         }
     }
 }

@@ -20,7 +20,7 @@ public class PlaneMovements : MonoBehaviour {
     public float m_speedMax = 1.0f; // Vitesse de "croisi�re"
 
     private Vector3 m_vector3;
-    private Joystick m_joystick = null;
+    //private Joystick m_joystick = null;
 
     //Commands
     public float m_up_down = 0.0f; // Gradient Haut/bas
@@ -37,7 +37,7 @@ public class PlaneMovements : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var m_rigidbody = GetComponent<Rigidbody>();
+        //var m_rigidbody = GetComponent<Rigidbody>();
 
         // Rotation
         m_actualRotation_LR += ((m_rotationSpeedLR * m_left_right) > m_actualRotation_LR ? m_rotationAccelerationLR : -m_rotationAccelerationLR) * Time.deltaTime;
@@ -56,6 +56,6 @@ public class PlaneMovements : MonoBehaviour {
         m_vector3.y += m_actualSpeed * Mathf.Sin(m_actualRotation_UD * Mathf.Deg2Rad) * Time.deltaTime; // Up and Down
 
         this.transform.localPosition = m_vector3;
-        m_rigidbody.velocity = new Vector3(m_joystick.Horizontal * 100f, m_rigidbody.velocity.y, m_joystick.Vertical * 100f);
+        //m_rigidbody.velocity = new Vector3(m_joystick.Horizontal * 100f, m_rigidbody.velocity.y, m_joystick.Vertical * 100f);
     }
 }
