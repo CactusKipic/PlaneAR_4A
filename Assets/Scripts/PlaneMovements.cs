@@ -5,21 +5,22 @@ using UnityEngine;
 public class PlaneMovements : MonoBehaviour {
 
     // Rotation
-    public float m_rotationAccelerationLR = 1.5f; // Accélération pour atteindre la vitesse de roulis de "croisière"
-    public float m_rotationAccelerationUD = 1.0f; // Accélération pour atteindre la vitesse de tangage de "croisière"
+    public float m_rotationAccelerationLR = 1.5f; // Accï¿½lï¿½ration pour atteindre la vitesse de roulis de "croisiï¿½re"
+    public float m_rotationAccelerationUD = 1.0f; // Accï¿½lï¿½ration pour atteindre la vitesse de tangage de "croisiï¿½re"
     private float m_actualRotation_LR = 0.0f; // Left/Right
     private float m_actualRotation_UD = 0.0f; // Up/Down
-    public float m_rotationSpeedLR = 5.0f; // Vitesse de roulis de "croisière"
-    public float m_rotationSpeedUD = 5.0f; // Vitesse de tangage de "croisière"
+    public float m_rotationSpeedLR = 5.0f; // Vitesse de roulis de "croisiï¿½re"
+    public float m_rotationSpeedUD = 5.0f; // Vitesse de tangage de "croisiï¿½re"
 
     private float m_angleLR = 0.0f; // Angle actuel Gauche/Droite
     private float m_angleUD = 0.0f; // Angle actuel Haut/Bas
     // Speed
-    public float m_accelerationSpeed = 0.3f; // Accélération pour atteindre la vitesse de "croisière"
+    public float m_accelerationSpeed = 0.3f; // Accï¿½lï¿½ration pour atteindre la vitesse de "croisiï¿½re"
     private float m_actualSpeed = 0.0f;
-    public float m_speedMax = 1.0f; // Vitesse de "croisière"
+    public float m_speedMax = 1.0f; // Vitesse de "croisiï¿½re"
 
     private Vector3 m_vector3;
+    private Joystick m_joystick = null;
 
     //Commands
     public float m_up_down = 0.0f; // Gradient Haut/bas
@@ -32,10 +33,16 @@ public class PlaneMovements : MonoBehaviour {
         m_vector3 = this.transform.localPosition;
         m_angleLR = this.transform.localRotation.y;
         m_angleUD = this.transform.localRotation.z;
+        private m_joystick = FindObjectOfType<Joystick>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (m_joystick != null)
+        {
+            m_rotationSpeed = m_joystick.Horizontal * m_rotationMaxSpeed;
+            m_speed = m_joystick.Vertical * m_maxSpeed;
+        }
 
         // Rotation
         m_actualRotation_LR += ((m_rotationSpeedLR * m_left_right) > m_actualRotation_LR ? m_rotationAccelerationLR : -m_rotationAccelerationLR) * Time.deltaTime;
@@ -54,6 +61,5 @@ public class PlaneMovements : MonoBehaviour {
         m_vector3.y += m_actualSpeed * Mathf.Sin(m_actualRotation_UD * Mathf.Deg2Rad) * Time.deltaTime; // Up and Down
 
         this.transform.localPosition = m_vector3;
-
     }
 }
