@@ -51,11 +51,11 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
         }
         else
         {
-            GameObject prefabInstantiated = Instantiate(m_prefabToInstantiate);
-            if (prefabInstantiated && instantiate)
+            m_instantiatedPrefab = Instantiate(m_prefabToInstantiate);
+            if (m_instantiatedPrefab && instantiate)
             {
-                prefabInstantiated.transform.position = this.transform.position + this.transform.forward;
-                prefabInstantiated.transform.parent = this.transform;
+                m_instantiatedPrefab.transform.position = raycastHit.point;
+                m_instantiatedPrefab.transform.parent = raycastHit.collider.transform;
                 Debug.Log("The prefab is instantiated on the plane.");
             }
             //Debug.LogError("The prefab cannot be instantiated, no plane is detected.");
