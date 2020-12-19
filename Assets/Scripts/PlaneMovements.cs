@@ -33,15 +33,15 @@ public class PlaneMovements : MonoBehaviour {
         m_vector3 = this.transform.localPosition;
         m_angleLR = this.transform.localRotation.y;
         m_angleUD = this.transform.localRotation.z;
-        private m_joystick = FindObjectOfType<Joystick>();
+        m_joystick = FindObjectOfType<Joystick>();
     }
 
     // Update is called once per frame
     void Update() {
         if (m_joystick != null)
         {
-            m_rotationSpeed = m_joystick.Horizontal * m_rotationMaxSpeed;
-            m_speed = m_joystick.Vertical * m_maxSpeed;
+            m_up_down = m_joystick.Vertical;
+            m_left_right = m_joystick.Horizontal;
         }
 
         // Rotation

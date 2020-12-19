@@ -8,7 +8,7 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
     Camera m_Camera;
     public LayerMask m_layerMask = 0x110;
     public GameObject m_prefabToInstantiate = null;
-
+    private GameObject m_instantiatedPrefab = null;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,8 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_instantiatedPrefab != null)
+            return;
         if (m_prefabToInstantiate == null)
             return;
         bool instantiate = false;
@@ -39,11 +41,11 @@ public class InstantiatePrefabOnTouch : MonoBehaviour
         RaycastHit raycastHit;
         if(Physics.Raycast(ray, out raycastHit, 100.0f, m_layerMask))
         {
-            GameObject prefabInstantiated = Instantiate(m_prefabToInstantiate);
-            if (prefabInstantiated && instantiate)
+            m_instantiatedPrefab = Instantiate(m_prefabToInstantiate);
+            if (m_instantiatedPrefab && instantiate)
             {
-                prefabInstantiated.transform.position = raycastHit.point;
-                prefabInstantiated.transform.parent = raycastHit.collider.transform;
+                m_instantiatedPrefab.transform.position = raycastHit.point;
+                m_instantiatedPrefab.transform.parent = raycastHit.collider.transform;
                 Debug.Log("The prefab is instantiated on the plane.");
             } 
         }
