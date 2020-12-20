@@ -20,7 +20,7 @@ public class PlaneMovements : MonoBehaviour {
     public float m_speedMax = 1.0f; // Vitesse de "croisi�re"
 
     private Vector3 m_vector3;
-    private Joystick m_joystick = null;
+    private FixedJoystick[] fixedJoysticks = null;
 
     //Commands
     public float m_up_down = 0.0f; // Gradient Haut/bas
@@ -33,15 +33,16 @@ public class PlaneMovements : MonoBehaviour {
         m_vector3 = this.transform.localPosition;
         m_angleLR = this.transform.localRotation.y;
         m_angleUD = this.transform.localRotation.z;
-        m_joystick = FindObjectOfType<Joystick>();
+        fixedJoysticks = FindObjectsOfType<FixedJoystick>();
     }
 
     // Update is called once per frame
     void Update() {
-        if (m_joystick != null)
+        if (fixedJoysticks != null)
         {
-            m_up_down = m_joystick.Vertical;
-            m_left_right = m_joystick.Horizontal;
+            m_up_down = fixedJoysticks[1].Vertical;
+            m_left_right = fixedJoysticks[1].Horizontal;
+            m_speed = fixedJoysticks[0].Vertical >= 0.0f ? fixedJoysticks[0].Vertical : 0.0f;
         }
 
         // Rotation
@@ -53,9 +54,7 @@ public class PlaneMovements : MonoBehaviour {
         this.transform.localRotation = Quaternion.Euler((m_actualRotation_LR * -1), m_angleLR, m_actualRotation_UD);
 
         // Speed
-
         m_actualSpeed += ((m_speedMax * m_speed) > m_actualSpeed ? m_accelerationSpeed : -m_accelerationSpeed) * Time.deltaTime;
-
         m_vector3.x += m_actualSpeed * Mathf.Cos(m_angleLR * Mathf.Deg2Rad) * Mathf.Cos(m_actualRotation_UD * Mathf.Deg2Rad) * Time.deltaTime; // Axe X
         m_vector3.z += m_actualSpeed * -Mathf.Sin(m_angleLR * Mathf.Deg2Rad) * Mathf.Cos(m_actualRotation_UD * Mathf.Deg2Rad) * Time.deltaTime; // Axe Z
         m_vector3.y += m_actualSpeed * Mathf.Sin(m_actualRotation_UD * Mathf.Deg2Rad) * Time.deltaTime; // Up and Down
