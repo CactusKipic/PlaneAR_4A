@@ -403,7 +403,7 @@ MonoBehaviour:
   m_layerMask:
     serializedVersion: 2
     m_Bits: 65
-  m_prefabToInstantiate: {fileID: 9125840689072263082, guid: 7c50ed301e0cde14b8243eaa73e17b81, type: 3}
+  m_prefabToInstantiate: {fileID: 4423326298013239881, guid: 673a6ec20cbbdfa47b2c9108aa46dc44, type: 3}
 --- !u!1 &807352314
 GameObject:
   m_ObjectHideFlags: 0
